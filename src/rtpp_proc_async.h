@@ -30,6 +30,8 @@
 
 struct rtpp_proc_async_cf;
 
+//日志异步写入的实现
+
 int rtpp_proc_async_init(struct cfg *);
 void rtpp_proc_async_wakeup(struct rtpp_proc_async_cf *, int, long long);
 
