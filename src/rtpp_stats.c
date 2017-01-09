@@ -97,7 +97,7 @@ static int rtpp_stats_obj_updatebyidx(struct rtpp_stats_obj *, int, uint64_t);
 static int rtpp_stats_obj_updatebyname(struct rtpp_stats_obj *, const char *, uint64_t);
 static int rtpp_stats_obj_updatebyname_d(struct rtpp_stats_obj *, const char *, double);
 static int64_t rtpp_stats_obj_getlvalbyname(struct rtpp_stats_obj *, const char *);
-static int rtpp_stats_obj_nstr(struct rtpp_stats_obj *, char *, int, const char *);
+static int rtpp_stats_obj_nstr(struct rtpp_stats_obj *, char *, int, const char *);  //获取的是字符串形式
 
 struct rtpp_stats_obj *
 rtpp_stats_ctor(void)

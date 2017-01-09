@@ -43,12 +43,12 @@
 #include "rtpp_session.h"
 
 struct rtp_server {
-    double btime;
+    double btime;    //lixin ???
     unsigned char buf[1024];
-    rtp_hdr_t *rtp;
-    unsigned char *pload;
-    int fd;
-    int loop;
+    rtp_hdr_t *rtp;   //指向了buf首地址
+    unsigned char *pload;  //指向buf 中数据内容地址,即首地址加上rtp头的地址
+    int fd;      //放音文件的句柄
+    int loop;   //播放循环次数
 };
 
 struct rtp_server *
@@ -58,7 +58,7 @@ rtp_server_new(const char *name, rtp_type_t codec, int loop)
     int fd;
     char path[PATH_MAX + 1];
 
-    sprintf(path, "%s.%d", name, codec);
+    sprintf(path, "%s.%d", name, codec); 
     fd = open(path, O_RDONLY);
     if (fd == -1)
 	return NULL;
@@ -97,6 +97,10 @@ rtp_server_free(struct rtp_server *rp)
     close(rp->fd);
     free(rp);
 }
+
+
+//从文件中读取一个rtp包
+//重要流程 not clear
 
 struct rtp_packet *
 rtp_server_get(struct rtp_server *rp, double dtime, int *rval)

@@ -26,6 +26,8 @@
  *
  */
 
+//放音时候用的,
+
 #ifndef _RTP_SERVER_H_
 #define _RTP_SERVER_H_
 

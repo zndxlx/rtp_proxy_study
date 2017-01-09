@@ -129,6 +129,7 @@ typedef enum {
     RTP_PARSER_IPS = -7
 } rtp_parser_err_t;
 
+//计算rtp头长度，注意cc的处理，cc表示了csrc的个数
 #define	RTP_HDR_LEN(rhp)	(sizeof(*(rhp)) + ((rhp)->cc * sizeof((rhp)->csrc[0])))
 
 const char *rtp_packet_parse_errstr(rtp_parser_err_t);

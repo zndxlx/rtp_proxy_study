@@ -28,6 +28,8 @@
 #ifndef _RTPP_WI_H_
 #define _RTPP_WI_H_
 
+//消息包体封装，包括数据和信号
+
 struct rtpp_wi;
 
 struct rtpp_wi *rtpp_wi_malloc(int, const void *, size_t, int,
