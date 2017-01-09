@@ -26,6 +26,8 @@
  *
  */
 
+//没有什么用，看rtpp_log_stand.h
+
 #ifndef _RTPP_LOG_H_
 #define _RTPP_LOG_H_
 

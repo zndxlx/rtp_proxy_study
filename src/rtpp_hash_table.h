@@ -26,6 +26,8 @@
  *
  */
 
+//hash 表操作
+
 struct rtpp_hash_table_obj;
 struct rtpp_hash_table_entry;
 

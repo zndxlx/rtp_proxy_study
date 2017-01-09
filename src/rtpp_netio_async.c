@@ -77,20 +77,20 @@ rtpp_anetio_sthread(struct sthread_args *args)
     tp[0] = getdtime();
 #endif
     for (;;) {
-        nsend = rtpp_queue_get_items(args->out_q, wis, 100, 0);
+        nsend = rtpp_queue_get_items(args->out_q, wis, 100, 0);  //从队列中去消息存在wis中
 #ifdef RTPP_DEBUG
         tp[1] = getdtime();
 #endif
 
         for (i = 0; i < nsend; i++) {
 	    wi = wis[i];
-            if (wi->wi_type == RTPP_WI_TYPE_SGNL) {
+            if (wi->wi_type == RTPP_WI_TYPE_SGNL) {   //信号类消息处理，直接使线程退出
                 rtpp_wi_free(wi);
                 goto out;
             }
             do {
                 n = sendto(wi->sock, wi->msg, wi->msg_len, wi->flags,
-                  wi->sendto, wi->tolen);
+                  wi->sendto, wi->tolen);   //数据类消息处理，直接转发
                 if (n >= 0) {
                     wi->nsend--;
                 } else if (n == -1 && errno != ENOBUFS) {
@@ -179,7 +179,7 @@ rtpp_anetio_send_pkt(struct sthread_args *sender, int sock, \
 }
 
 struct sthread_args *
-rtpp_anetio_pick_sender(struct rtpp_anetio_cf *netio_cf)
+rtpp_anetio_pick_sender(struct rtpp_anetio_cf *netio_cf)  //选取一个队列最空的线程发送数据
 {
     int min_len, i, l;
     struct sthread_args *sender;
@@ -242,6 +242,7 @@ rtpp_netio_async_init(struct cfg *cf, int qlen)
     return (netio_cf);
 }
 
+
 void
 rtpp_netio_async_destroy(struct rtpp_anetio_cf *netio_cf)
 {
@@ -249,7 +250,7 @@ rtpp_netio_async_destroy(struct rtpp_anetio_cf *netio_cf)
     struct rtpp_wi *wi[SEND_THREADS];
 
     for (i = 0; i < SEND_THREADS; i++) {
-        wi[i] = rtpp_wi_malloc_sgnl(SIGTERM, NULL, 0);
+        wi[i] = rtpp_wi_malloc_sgnl(SIGTERM, NULL, 0);  //信号消息
         if (wi[i] == NULL) {
             for (ri = i - 1; ri >= 0; ri--) {
                  rtpp_wi_free(wi[ri]);
@@ -259,7 +260,7 @@ rtpp_netio_async_destroy(struct rtpp_anetio_cf *netio_cf)
         }
     }
     for (i = 0; i < SEND_THREADS; i++) {
-        rtpp_queue_put_item(wi[i], netio_cf->args[i].out_q);
+        rtpp_queue_put_item(wi[i], netio_cf->args[i].out_q);  //发送信号消息给工作线程
     }
     for (i = 0; i < SEND_THREADS; i++) {
         pthread_join(netio_cf->thread_id[i], NULL);

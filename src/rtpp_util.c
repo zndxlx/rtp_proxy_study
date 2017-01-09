@@ -338,7 +338,7 @@ rtpp_get_sched_hz_linux(void)
 #endif
 
 int
-rtpp_get_sched_hz(void)
+rtpp_get_sched_hz(void)  //获取内核节拍数
 {
     int sched_hz;
 

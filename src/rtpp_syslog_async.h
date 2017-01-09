@@ -24,6 +24,7 @@
  * SUCH DAMAGE.
  *
  */
+//日志异步写
 
 #ifndef _RTPP_SYSLOG_ASYNC_H_
 #define _RTPP_SYSLOG_ASYNC_H_

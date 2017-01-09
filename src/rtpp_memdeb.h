@@ -25,6 +25,8 @@
  *
  */
 
+//调试内存泄漏时候有用
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

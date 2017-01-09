@@ -231,7 +231,7 @@ init_config(struct cfg *cf, int argc, char **argv)
 	    if (strcmp(optarg, "random") == 0) {
                 x = getdtime() * 1000000.0;
                 srand48((long)x);
-                cf->stable->sched_offset = drand48();
+                cf->stable->sched_offset = drand48();  // 0-1之间的随机数
             } else {
                 tp[0] = optarg;
                 tp[1] = strchr(tp[0], '/');
@@ -588,7 +588,7 @@ main(int argc, char **argv)
     double sleep_time, filter_lastval;
 #endif
 
-#ifdef RTPP_CHECK_LEAKS
+#ifdef RTPP_CHECK_LEAKS  //内存泄漏检测初始化
     if (rtpp_memdeb_selftest() != 0) {
         errx(1, "MEMDEB self-test has failed");
         /* NOTREACHED */
@@ -689,8 +689,8 @@ main(int argc, char **argv)
     cf.sessinfo.nsessions = 0;
     cf.rtp_nsessions = 0;
 
-    rtpp_proc_async_init(&cf);
-    rtpp_command_async_init(&cf);
+    rtpp_proc_async_init(&cf);   //创建了线程
+    rtpp_command_async_init(&cf);//创建了线程
 
     counter = 0;
     recfilter_init(&loop_error, 0.96, 0.0, 0);
@@ -701,7 +701,7 @@ main(int argc, char **argv)
 #ifdef RTPP_CHECK_LEAKS
     rtpp_memdeb_setbaseln();
 #endif
-    for (;;) {
+    for (;;) {    //主循环
 	eptime = getdtime();
 
         clk = (eptime + cf.stable->sched_offset) * cf.stable->target_pfreq;
@@ -735,7 +735,7 @@ main(int argc, char **argv)
         sleep_time = getdtime();
 #endif
         rtpp_proc_async_wakeup(cf.stable->rtpp_proc_cf, counter, ncycles_ref);
-        usleep(usleep_time);
+        usleep(usleep_time); //这个时间怎么得到的
 #if RTPP_DEBUG
         sleep_time = getdtime() - sleep_time;
         if (counter % (unsigned int)cf.stable->target_pfreq == 0 || counter < 1000 || sleep_time > add_delay * 2.0) {

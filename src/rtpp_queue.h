@@ -24,7 +24,7 @@
  * SUCH DAMAGE.
  *
  */
-
+//一个队列的实现，使用了信号量唤醒
 #ifndef _RTPP_QUEUE_H_
 #define _RTPP_QUEUE_H_
 

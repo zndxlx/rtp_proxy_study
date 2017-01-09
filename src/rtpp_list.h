@@ -24,6 +24,7 @@
  * SUCH DAMAGE.
  *
  */
+#链表基本操作
 
 #ifdef RTPP_DEBUG
 #include <assert.h>

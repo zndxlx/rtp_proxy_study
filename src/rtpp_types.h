@@ -33,5 +33,9 @@ struct rtpp_type_linkable {
     char type_data[0];
 };
 
+//定义类class的方法func_t，返回值为rval，参数为类和args
+
 #define DEFINE_METHOD(class, func, rval, args...) typedef rval (*func##_t)(struct class *, ## args)
+
+//调用对象obj的方法method,参数为args
 #define CALL_METHOD(obj, method, args...) (obj)->method(obj, ## args)
