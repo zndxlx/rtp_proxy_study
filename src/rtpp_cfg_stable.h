@@ -63,7 +63,7 @@ struct rtpp_cfg_stable {
     const char *rdir;
     const char *sdir;
     int record_pcap;                /* Record in the PCAP format? */
-    int record_all;                 /* Record everything */
+    int record_all;                 /* Record everything 所有的都录音*/
 
     int rrtcp;                      /* Whether or not to relay RTCP? */
     rtpp_log_t glog;
@@ -83,7 +83,7 @@ struct rtpp_cfg_stable {
     int log_facility;
 
     uint16_t port_table[65536];
-    int port_table_len;
+    int port_table_len;  //cf->stable->port_table_len = ((cf->stable->port_max - cf->stable->port_min) / 2) + 1;
 
     struct rtpp_hash_table_obj *sessions_ht;
 

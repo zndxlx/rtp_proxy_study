@@ -599,6 +599,7 @@ handle_delete(struct cfg *cf, struct common_cmd_args *ccap, int weak)
     return 0;
 }
 
+//停止放音
 static void
 handle_noplay(struct cfg *cf, struct rtpp_session *spa, int idx, struct rtpp_command *cmd)
 {
@@ -619,7 +620,7 @@ handle_noplay(struct cfg *cf, struct rtpp_session *spa, int idx, struct rtpp_com
 
 static int
 handle_play(struct cfg *cf, struct rtpp_session *spa, int idx, char *codecs,
-  char *pname, int playcount, struct rtpp_command *cmd)
+  char *pname, int playcount, struct rtpp_command *cmd)  //创建放音
 {
     int n;
     char *cp;
@@ -647,7 +648,7 @@ handle_play(struct cfg *cf, struct rtpp_session *spa, int idx, char *codecs,
 
 static int
 handle_record(struct cfg *cf, struct common_cmd_args *ccap,
-  int record_single_file)
+  int record_single_file)  //录音
 {
     int nrecorded, idx;
     struct rtpp_session *spa;
@@ -672,7 +673,7 @@ handle_record(struct cfg *cf, struct common_cmd_args *ccap,
 
 static void
 handle_query(struct cfg *cf, struct rtpp_command *cmd,
-  struct rtpp_session *spa, int idx)
+  struct rtpp_session *spa, int idx)   //session 的统计信息
 {
     int len;
 
@@ -684,7 +685,7 @@ handle_query(struct cfg *cf, struct rtpp_command *cmd,
 
 static void
 handle_info(struct cfg *cf, struct rtpp_command *cmd,
-  const char *opts)
+  const char *opts)   //rtpp 的统计信息
 {
 #if 0
     struct rtpp_session *spa, *spb;

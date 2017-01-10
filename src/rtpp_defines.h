@@ -91,7 +91,7 @@ struct cfg {
 
     struct rtpp_timeout_handler *timeout_handler;
 
-    int port_table_idx;
+    int port_table_idx;  //cf->port_table_idx = cf->stable->port_table_len - 1; 初始化是最后一个位置
 
     pthread_mutex_t glock;
 };

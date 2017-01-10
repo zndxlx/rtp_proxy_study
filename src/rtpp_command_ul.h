@@ -32,6 +32,8 @@
 struct ul_opts;
 struct ul_reply;
 
+//update 命令处理，相对复杂
+
 struct ul_opts *rtpp_command_ul_opts_parse(struct cfg *cf,
   struct rtpp_command *cmd);
 void rtpp_command_ul_opts_free(struct ul_opts *ulop);

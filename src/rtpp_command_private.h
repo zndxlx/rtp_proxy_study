@@ -52,6 +52,10 @@ struct rtpp_command_stats {
 enum rtpp_cmd_op {DELETE, RECORD, PLAY, NOPLAY, COPY, UPDATE, LOOKUP, INFO,
   QUERY, VER_FEATURE, GET_VER, DELETE_ALL, GET_STATS};
 
+//DELETE , RECORD, PLAY, NOPLAY, COPY 打开录音通道, UPDATE, LOOKUP, INFO,
+//  QUERY, VER_FEATURE, GET_VER, DELETE_ALL, GET_STATS
+
+
 struct common_cmd_args {
     enum rtpp_cmd_op op;
     const char *rname;
@@ -64,8 +68,8 @@ struct common_cmd_args {
 struct rtpp_command
 {
     char buf[1024 * 8];
-    char buf_t[256];
-    char buf_r[256];
+    char buf_t[256];   //响应的buf
+    char buf_r[256];   //
     char *argv[RTPC_MAX_ARGC];
     int argc;
     struct sockaddr_storage raddr;

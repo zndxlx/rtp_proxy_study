@@ -61,7 +61,7 @@ static void send_packet(struct cfg *, struct rtpp_session *, int, \
 
 void
 process_rtp_servers(struct cfg *cf, double dtime, struct sthread_args *sender,
-  struct rtpp_proc_rstats *rsp)
+  struct rtpp_proc_rstats *rsp)  //所有session的放音在这处理
 {
     int j, sidx, len, skipfd;
     struct rtpp_session *sp;
@@ -97,12 +97,12 @@ process_rtp_servers(struct cfg *cf, double dtime, struct sthread_args *sender,
                         /* XXX some error, brag to logs */
                     }
                     break;
-		}
+				}
                 rtpp_anetio_send_pkt(sender, sp->fds[sidx], sp->addr[sidx], \
                   SA_LEN(sp->addr[sidx]), pkt);
                 rsp->npkts_played.cnt++;
 	    }
-	}
+	  }
     }
     cf->rtp_nsessions -= skipfd;
 }

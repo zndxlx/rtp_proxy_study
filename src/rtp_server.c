@@ -43,7 +43,7 @@
 #include "rtpp_session.h"
 
 struct rtp_server {
-    double btime;    //lixin ???
+    double btime;    //开始放音时间
     unsigned char buf[1024];
     rtp_hdr_t *rtp;   //指向了buf首地址
     unsigned char *pload;  //指向buf 中数据内容地址,即首地址加上rtp头的地址

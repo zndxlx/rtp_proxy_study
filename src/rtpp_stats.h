@@ -37,7 +37,7 @@ DEFINE_METHOD(rtpp_stats_obj, rtpp_stats_obj_updatebyidx, int, int, uint64_t);
 DEFINE_METHOD(rtpp_stats_obj, rtpp_stats_obj_updatebyname, int, const char *, uint64_t);
 DEFINE_METHOD(rtpp_stats_obj, rtpp_stats_obj_updatebyname_d, int, const char *, double);
 DEFINE_METHOD(rtpp_stats_obj, rtpp_stats_obj_getlvalbyname, int64_t, const char *);
-DEFINE_METHOD(rtpp_stats_obj, rtpp_stats_obj_nstr, int, char *, int, const char *);
+DEFINE_METHOD(rtpp_stats_obj, rtpp_stats_obj_nstr, int, char *, int, const char *); //获取得到是字符格式的结果
 
 struct rtpp_stats_obj_priv;
 

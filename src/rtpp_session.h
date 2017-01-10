@@ -64,7 +64,7 @@ struct rtpp_session {
     /* Flags: strong create/delete; weak ones */
     int strong;
     int weak[2];
-    /* Pointers to rtpp_record's opaque data type */
+    /* Pointers to rtpp_record's opaque data type,  录音通道 rtpp_record_channel */
     void *rrcs[2];
     int record_single_file;
     struct rtp_server *rtps[2];

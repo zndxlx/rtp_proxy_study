@@ -25,4 +25,5 @@
  *
  */
 
+//获取统计并响应给客户端，统计的信息参见rtpp_stats.c
 int handle_get_stats(struct cfg *, struct rtpp_command *, int);

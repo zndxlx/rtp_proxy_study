@@ -38,16 +38,18 @@
 #include "rtpp_session.h"
 #include "rtpp_util.h"
 
+//idx 表示是caller还是callee, record_single_file表示是录制一个文件还是两个(表示rtp,rtcp分开录制)
+// 最后填充的是spa->rrcs,spa->rtcp->rrcs 录音通道结构
 int
 handle_copy(struct cfg *cf, struct rtpp_session *spa, int idx, char *rname,
   int record_single_file)
 {
     int remote;
 
-    remote = (rname != NULL && strncmp("udp:", rname, 4) == 0)? 1 : 0;
+    remote = (rname != NULL && strncmp("udp:", rname, 4) == 0)? 1 : 0;  //判断是转发，还是本地写文件
 
     if (remote == 0 && (record_single_file != 0 || spa->record_single_file != 0)) {
-        if (spa->rrcs[idx] != NULL)
+        if (spa->rrcs[idx] != NULL)  //录音通道已经打开  rtpp_record_channel 就不用处理了
             return (-1);
         spa->record_single_file = 1;
         if (spa->rrcs[NOT(idx)] != NULL) {

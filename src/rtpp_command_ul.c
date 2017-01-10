@@ -63,7 +63,7 @@ struct ul_reply {
 };
 
 struct ul_opts {
-    int asymmetric;
+    int asymmetric;   //需要重点理解 和桥接模式有关系
     int weak;
     int requested_nsamples;
     char *codecs;

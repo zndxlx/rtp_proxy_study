@@ -34,6 +34,8 @@ struct rtpp_session;
 struct rtp_packet;
 struct sockaddr;
 
+//录音处理，支持转发，写本地文件
+
 /* Function prototypes */
 void *ropen(struct cfg *cf, struct rtpp_session *, char *, int);
 void rwrite(struct rtpp_session *, void *, struct rtp_packet *,

@@ -25,7 +25,7 @@
  * SUCH DAMAGE.
  *
  */
-//用于控制端口的初始化 ，填充cfg结构
+//用于控制端口的初始化 ，填充结构cf->stable->ctrl_socks
 
 enum rtpp_ctrl_type {RTPC_IFSUN, RTPC_UDP4, RTPC_UDP6, RTPC_SYSD, RTPC_STDIO, RTPC_IFSUN_C};
 

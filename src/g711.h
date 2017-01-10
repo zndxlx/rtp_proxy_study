@@ -2170,6 +2170,8 @@ uint8_t _sl2A[0x2000] = {
    0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa
 };
 
+
+//ulp是输出 slp是输入 把一个16bit的数转换成了一个8bit的数 g711u
 #define SL2ULAW(ulp, slp, nwords) {							\
     unsigned int _i;									\
 											\
@@ -2177,6 +2179,8 @@ uint8_t _sl2A[0x2000] = {
         ((uint8_t *)(ulp))[_i] = _sl2u[(((int16_t *)(slp))[_i] >> 2) + 0x2000];	\
 }
 
+
+//alp是输出 slp是输入 把一个16bit的数转换成了一个8bit的数 g711a
 #define SL2ALAW(alp, slp, nwords) {							\
     unsigned int _i;									\
 											\
