@@ -26,6 +26,8 @@
  *
  */
 
+//将16bit的pcm数据编码的工具
+ 
 #if defined(HAVE_CONFIG_H)
 #include "config_pp.h"
 #endif

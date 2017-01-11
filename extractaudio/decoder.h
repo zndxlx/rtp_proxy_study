@@ -53,14 +53,14 @@
 #define	DECODER_SKIP	(-(3 << 16))
 
 struct decoder_stream {
-    struct session *sp;
-    struct packet *pp;
-    unsigned int nticks;
-    unsigned int sticks;
-    unsigned char lpt;
+    struct session *sp;    //packet 列表的首尾两个元素
+    struct packet *pp;     //一个packet 列表
+    unsigned int nticks;   //初始化为第一个收到包的time_stamp
+    unsigned int sticks;   //初始化为第一个收到包的time_stamp
+    unsigned char lpt;     //pt值
     unsigned char obuf[8 * 1024];	/* 0.5 seconds at 8 KHz 16 bits per sample */
-    unsigned char *obp;
-    unsigned int oblen;
+    unsigned char *obp;  //指向obuf的指针，用于指向解码后的数据
+    unsigned int oblen;  //解码数据长度
 #ifdef ENABLE_G729
     G729_DCTX *g729_ctx;
 #endif
@@ -70,8 +70,8 @@ struct decoder_stream {
 #ifdef ENABLE_GSM
     gsm ctx_gsm;
 #endif
-    double stime;
-    double dticks;
+    double stime;  //第一个收到包的获取时间
+    double dticks;  //
     /* FILE *f; */
     int dflags;
 };

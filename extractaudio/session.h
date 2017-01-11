@@ -69,13 +69,13 @@
 struct pkt_hdr_adhoc;
 
 struct packet {
-    struct pkt_hdr_adhoc *pkt;
+    struct pkt_hdr_adhoc *pkt;  //数据包头 里面封装的是rtp包
     struct rtp_info parsed;
-    rtp_hdr_t *rpkt;
+    rtp_hdr_t *rpkt;   //rtp包的头 位置在数据包头的后面 通过RPKT得到
     struct packet *prev;
     struct packet *next;
 };
-struct session {
+struct session {    
     struct packet *first;
     struct packet *last;
 };
@@ -83,7 +83,7 @@ struct session {
 enum origin {O_CH, A_CH};
 
 struct channel {
-    struct session session;
+    struct session session; //session里面packet的ssrc相同，不同时候需要再创建一个channel
     void *decoder;
     unsigned int skip;
     enum origin origin;

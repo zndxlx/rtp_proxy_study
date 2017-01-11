@@ -144,7 +144,7 @@ load_adhoc(struct rtpp_loader *loader, struct channels *channels,
         pack->rpkt = RPKT(pack);
         update_rtpp_stats(stat, pack->rpkt, &(pack->parsed), pkt->time);
 
-        sess = session_lookup(channels, pack->rpkt->ssrc);
+        sess = session_lookup(channels, pack->rpkt->ssrc);  //ssrc不同channel不同
         if (sess == NULL) {
             channel = malloc(sizeof(*channel));
             memset(channel, 0, sizeof(*channel));
@@ -158,7 +158,7 @@ load_adhoc(struct rtpp_loader *loader, struct channels *channels,
         }
 
         /* Put packet it order */
-        MYQ_FOREACH_REVERSE(pp, sess) {
+        MYQ_FOREACH_REVERSE(pp, sess) {  //将pack插入到sessions中
             if (pp->parsed.seq == pack->parsed.seq) {
                 /* Duplicate packet */
                 free(pack);

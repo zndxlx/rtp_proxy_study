@@ -78,7 +78,7 @@ decoder_new(struct session *sp, int dflags)
 }
 
 int32_t
-decoder_get(struct decoder_stream *dp)
+decoder_get(struct decoder_stream *dp)  //返回一个int16_t的解码数据
 {
     unsigned int cticks, t;
     int j;

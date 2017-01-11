@@ -40,8 +40,8 @@ struct rtpp_loader;
 
 struct rtpp_loader {
     int ifd;
-    struct stat sb;
-    unsigned char *ibuf;    
+    struct stat sb;       //打开文件的状态
+    unsigned char *ibuf;  // 打开文件的首地址  
     int (*load)(struct rtpp_loader *, struct channels *, struct rtpp_session_stat *, enum origin);
     void (*destroy)(struct rtpp_loader *);
 
